@@ -1,0 +1,162 @@
+$text_color: #ffffff;
+$text_color_alt: #000000;
+$background_primary: #1a202c;
+$modal_background_primary: #2d3748;
+$modal_background_light: rgb(247, 248, 253);
+$link_primary: #00a0dc;
+
+/* reset */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.SignUpPage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+// signup main
+
+.SignUpMain {
+  height: 95%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  a {
+    text-decoration: none;
+    color: $link_primary;
+  }
+
+  a:hover {
+    cursor: pointer;
+  }
+}
+
+.SignUp-UI-Dark {
+  background-color: $background_primary;
+  color: $text_color;
+  .SignUpModal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 70%;
+    width: 90%;
+    .SignUpHeader {
+      font-size: 2rem;
+    }
+    .SignUpForm {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 70%;
+      width: 30%;
+      border-radius: 0.5rem;
+      background-color: $modal_background_primary;
+      .FormInput {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 90%;
+
+        label {
+          margin-bottom: 1rem;
+        }
+
+        input {
+          width: 100%;
+          padding: 1rem 0.5rem 1rem 0.5rem;
+          background-color: inherit;
+          border: 1px solid gray;
+          margin-bottom: 1rem;
+          border-radius: 0.35rem;
+          color: $text_color;
+        }
+      }
+      .SubmitButton {
+        width: 90%;
+        padding: 1rem 0.5rem 1rem 0.5rem;
+        background-color: $link_primary;
+        border: 1px solid gray;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 0.35rem;
+        color: $text_color;
+      }
+
+      .SubmitButton:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.SignUp-UI-Light {
+  background-color: $modal_background_light;
+  color: $text_color_alt;
+  .SignUpModal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 70%;
+    width: 90%;
+    .SignUpHeader {
+      font-size: 2rem;
+    }
+    .SignUpForm {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 70%;
+      width: 30%;
+      border-radius: 0.5rem;
+      background-color: $modal_background_light;
+      .FormInput {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 90%;
+
+        label {
+          margin-bottom: 1rem;
+        }
+
+        input {
+          width: 100%;
+          padding: 1rem 0.5rem 1rem 0.5rem;
+          background-color: inherit;
+          border: 1px solid gray;
+          margin-bottom: 1rem;
+          border-radius: 0.35rem;
+          color: $text_color_alt;
+        }
+      }
+      .SubmitButton {
+        width: 90%;
+        padding: 1rem 0.5rem 1rem 0.5rem;
+        background-color: $link_primary;
+        border: 1px solid gray;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 0.35rem;
+        color: $text_color;
+      }
+
+      .SubmitButton:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
