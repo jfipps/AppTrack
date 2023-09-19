@@ -26,8 +26,8 @@ exports.router.post("/signup", async (req, res) => {
     try {
         await user.save();
         const token = await user.generateAuthToken();
-        const newUser = user.getPublicInfo();
-        res.status(201).send({ newUser, token });
+        req.session.user = user.getPublicInfo();
+        res.status(201).send({ user, token });
     }
     catch (e) {
         res.status(400).send(e);

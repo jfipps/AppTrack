@@ -18,6 +18,8 @@ export default function LoginForm() {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     dispatch(createAccount());
+    console.log("account created");
+    navigate("/");
   };
 
   return (

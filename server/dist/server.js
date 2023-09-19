@@ -29,7 +29,7 @@ app.use((0, express_session_1.default)({
     saveUninitialized: false,
     resave: false,
     cookie: {
-        httpOnly: false,
+        httpOnly: true,
         maxAge: 360000,
         secure: false,
     },
@@ -37,7 +37,9 @@ app.use((0, express_session_1.default)({
 // cors setup
 const corsOptions = {
     origin: [`http://localhost:3000`],
-    methods: ["GET", "POSTS"],
+    credentials: true,
+    optionSuccessStatus: 200,
+    methods: ["GET", "POST"],
 };
 app.use(express.json());
 app.use(cors(corsOptions));

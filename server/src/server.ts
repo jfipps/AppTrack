@@ -45,7 +45,7 @@ app.use(
     saveUninitialized: false,
     resave: false,
     cookie: {
-      httpOnly: false,
+      httpOnly: true,
       maxAge: 360000,
       secure: false,
     },
@@ -55,7 +55,9 @@ app.use(
 // cors setup
 const corsOptions = {
   origin: [`http://localhost:3000`],
-  methods: ["GET", "POSTS"],
+  credentials: true,
+  optionSuccessStatus: 200,
+  methods: ["GET", "POST"],
 };
 
 app.use(express.json());
