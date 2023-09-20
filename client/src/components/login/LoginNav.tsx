@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { BsLightbulbFill } from "react-icons/bs";
 import "../../css/login.scss";
-import { enable, disable } from "../../store/slices/filter";
+import { enableDarkMode, disableDarkMode } from "../../store/slices/toggles";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 export default function LoginNav() {
   const darkModeEnabled = useAppSelector(
-    (state) => state.filter.darkModeEnabled
+    (state) => state.toggles.darkModeEnabled
   );
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
     if (darkModeEnabled) {
-      dispatch(disable());
+      dispatch(disableDarkMode());
     } else {
-      dispatch(enable());
+      dispatch(enableDarkMode());
     }
   };
 

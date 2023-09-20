@@ -1,0 +1,104 @@
+$text_color: #ffffff;
+$text_color_alt: #000000;
+$background_primary: #1a202c;
+$modal_background_primary: #2d3748;
+$background_light: rgb(247, 248, 253);
+$link_primary: #00a0dc;
+
+/* reset */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.HomeNavBar {
+  height: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  .NavContainer {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 80%;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.Nav-UI-Dark {
+  background-color: $modal_background_primary;
+  color: $text_color;
+  span {
+    font-family: "Inter", sans-serif;
+    font-family: "Oswald", sans-serif;
+    font-size: 2rem;
+  }
+  button {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: #415069;
+    color: $text_color;
+  }
+  button:hover {
+    cursor: pointer;
+    background-color: $background_primary;
+  }
+}
+
+.Nav-UI-Light {
+  background-color: $background_light;
+  border-bottom: 1px solid #eeeeee;
+  color: $text_color_alt;
+  span {
+    font-family: "Inter", sans-serif;
+    font-family: "Oswald", sans-serif;
+    font-size: 2rem;
+  }
+  button {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: #eeeeee;
+    color: $text_color_alt;
+  }
+  button:hover {
+    cursor: pointer;
+    background-color: #cfcfcf;
+  }
+}
+
+// home main
+
+.HomeMain {
+  height: 95%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  a {
+    text-decoration: none;
+    color: $link_primary;
+  }
+
+  a:hover {
+    cursor: pointer;
+  }
+}
+
+.Home-UI-Dark {
+  background-color: $background_primary;
+  color: $text_color;
+}
+
+.Home-UI-Light {
+  background-color: $background_light;
+  color: $text_color_alt;
+}

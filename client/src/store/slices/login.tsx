@@ -5,7 +5,8 @@ const loginSlice = createSlice({
   initialState: {
     email: "",
     password: "",
-    user: false,
+    user: { firstName: "", lastName: "", email: "" },
+    loggedIn: false,
   },
   reducers: {
     updateEmail: (state, action: PayloadAction<string>) => {
@@ -14,13 +15,23 @@ const loginSlice = createSlice({
     updatePassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
     },
-    setUserSession: (state, action: PayloadAction<boolean>) => {
+    setUserLoggedIn: (state, action: PayloadAction<boolean>) => {
+      state.loggedIn = action.payload;
+    },
+    setUserSession: (
+      state,
+      action: PayloadAction<{
+        firstName: string;
+        lastName: string;
+        email: string;
+      }>
+    ) => {
       state.user = action.payload;
     },
   },
 });
 
-export const { updateEmail, updatePassword, setUserSession } =
+export const { updateEmail, updatePassword, setUserLoggedIn, setUserSession } =
   loginSlice.actions;
 
 export default loginSlice.reducer;

@@ -62,7 +62,7 @@ router.get("/users", sessionCheck, async (req: Request, res: Response) => {
 
 // route to logout user
 router.get(
-  "/users/logout",
+  "/user/logout",
   sessionCheck,
   async (req: Request, res: Response) => {
     try {

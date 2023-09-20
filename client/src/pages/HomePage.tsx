@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import HomeNav from "../components/home/HomeNav";
-import {
-  updateEmail,
-  updatePassword,
-  setUserSession,
-} from "../store/slices/login";
-import { enableLoading, disableLoading } from "../store/slices/loading";
+import HomeMain from "../components/home/HomeMain";
+import { setUserLoggedIn, setUserSession } from "../store/slices/login";
+import { enableLoading, disableLoading } from "../store/slices/toggles";
 import "../css/home.scss";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useNavigate, Navigate } from "react-router-dom";
@@ -13,9 +10,9 @@ import { useNavigate, Navigate } from "react-router-dom";
 export default function HomePage() {
   const dispatch = useAppDispatch();
 
-  const isLoading = useAppSelector((state) => state.loading.isLoading);
+  const isLoading = useAppSelector((state) => state.toggles.isLoading);
 
-  const userSession = useAppSelector((state) => state.login.user);
+  const userLoggedIn = useAppSelector((state) => state.login.loggedIn);
 
   const CheckAuth = async () => {
     dispatch(enableLoading());
@@ -29,7 +26,15 @@ export default function HomePage() {
       .then((res) => {
         res.json().then((data) => {
           console.log("Home: ", data.loggedIn);
-          dispatch(setUserSession(data.loggedIn));
+          dispatch(setUserLoggedIn(data.loggedIn));
+          console.log(data.user.firstName, data.user.lastName, data.user.email);
+          dispatch(
+            setUserSession({
+              firstName: data.user.firstName,
+              lastName: data.user.lastName,
+              email: data.user.email,
+            })
+          );
           dispatch(disableLoading());
         });
       })
@@ -43,13 +48,16 @@ export default function HomePage() {
     CheckAuth();
   }, []);
 
-  console.log(isLoading, userSession);
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  if (userSession) {
-    return <>LoggedIn</>;
+  if (userLoggedIn) {
+    return (
+      <>
+        <HomeNav></HomeNav>
+        <HomeMain></HomeMain>
+      </>
+    );
   } else {
     console.log("User session is not available");
     return <Navigate replace to="/" />;

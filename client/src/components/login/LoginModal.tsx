@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 export default function LoginModal() {
   const darkModeEnabled = useAppSelector(
-    (state) => state.filter.darkModeEnabled
+    (state) => state.toggles.darkModeEnabled
   );
 
   return (

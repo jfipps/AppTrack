@@ -5,9 +5,9 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   updateEmail,
   updatePassword,
+  setUserLoggedIn,
   setUserSession,
 } from "../../store/slices/login";
-import { enableLoading, disableLoading } from "../../store/slices/loading";
 
 export default function LoginForm() {
   const dispatch = useAppDispatch();
@@ -18,7 +18,7 @@ export default function LoginForm() {
   const navigate = useNavigate();
 
   const handleLoginSubmit = async (event: React.FormEvent) => {
-    let user;
+    let user: { user: { firstName: string; lastName: string; email: string } };
     event.preventDefault();
     if (email.length > 0 && password.length > 0) {
       const body = { email, password };
@@ -31,6 +31,9 @@ export default function LoginForm() {
         body: JSON.stringify(body),
       });
       user = await res.json();
+      console.log(typeof user);
+    } else {
+      return;
     }
     if (user) {
       try {
@@ -45,9 +48,14 @@ export default function LoginForm() {
             console.log("Not Found");
           }
           res.json().then((data) => {
-            dispatch(setUserSession(data.loggedIn));
-            console.log("User Data");
-            console.log(data.loggedIn);
+            dispatch(setUserLoggedIn(data.loggedIn));
+            dispatch(
+              setUserSession({
+                firstName: user.user.firstName,
+                lastName: user.user.lastName,
+                email: user.user.email,
+              })
+            );
           });
         });
       } catch (e) {

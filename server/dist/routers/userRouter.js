@@ -57,7 +57,7 @@ exports.router.get("/users", sessionCheck, async (req, res) => {
     }
 });
 // route to logout user
-exports.router.get("/users/logout", sessionCheck, async (req, res) => {
+exports.router.get("/user/logout", sessionCheck, async (req, res) => {
     try {
         delete req.session.user;
         res.status(200).send(req.session);
