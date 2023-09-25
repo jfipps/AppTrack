@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BsLightbulbFill } from "react-icons/bs";
+import HomeNavDropdown from "./HomeNavDropdown";
+import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import "../../css/home.scss";
 import {
   enableDarkMode,
@@ -8,7 +10,7 @@ import {
   closeDropdown,
 } from "../../store/slices/toggles";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 export default function HomeNav() {
   const darkModeEnabled = useAppSelector(
@@ -33,19 +35,6 @@ export default function HomeNav() {
     }
   };
 
-  const handleLogout = async () => {
-    await fetch("http://localhost:5001/user/logout", {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => {
-      console.log(res.json());
-    });
-    navigate("/");
-  };
-
   const handleUserProfileClick = () => {
     if (userDropdownOpen) {
       dispatch(closeDropdown());
@@ -54,30 +43,40 @@ export default function HomeNav() {
     }
   };
 
-  return (
-    <>
-      <div
-        className={
-          darkModeEnabled ? "HomeNavBar Nav-UI-Dark" : "HomeNavBar Nav-UI-Light"
-        }
-      >
-        <div className="NavContainer">
-          <span className="NavLogo">APP TRACK</span>
-          <div className="HomeNavButtons">
-            <button onClick={handleDarkModeClick}>
-              {darkModeEnabled ? (
-                <BsLightbulbFill color="white"></BsLightbulbFill>
-              ) : (
-                <BsLightbulbFill color="black"></BsLightbulbFill>
-              )}
-            </button>
-            <button onClick={handleUserProfileClick}>
-              {user.firstName[0]}
-              {user.lastName[0]}
-            </button>
+  if (user.firstName.length > 0) {
+    return (
+      <>
+        <div
+          className={
+            darkModeEnabled
+              ? "HomeNavBar Nav-UI-Dark"
+              : "HomeNavBar Nav-UI-Light"
+          }
+        >
+          <div className="NavContainer">
+            <span className="NavLogo">APP TRACK</span>
+            <div className="HomeNavButtons">
+              <button onClick={handleDarkModeClick}>
+                {darkModeEnabled ? (
+                  <BsLightbulbFill color="white"></BsLightbulbFill>
+                ) : (
+                  <BsLightbulbFill color="black"></BsLightbulbFill>
+                )}
+              </button>
+              <div className="DropdownButton">
+                <button onClick={handleUserProfileClick}>
+                  {user.firstName} {user.lastName}{" "}
+                  <AiOutlineDown></AiOutlineDown>
+                </button>
+                {userDropdownOpen && <HomeNavDropdown></HomeNavDropdown>}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  } else {
+    console.log("User session is not available");
+    return <Navigate replace to="/" />;
+  }
 }

@@ -26,6 +26,35 @@ $link_primary: #00a0dc;
     width: 80%;
     align-items: center;
     justify-content: space-between;
+    .HomeNavButtons {
+      display: flex;
+      flex-direction: row;
+      width: 10%;
+      justify-content: space-around;
+      .DropdownButton {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        margin-left: 10rem;
+        .Dropdown {
+          list-style: none;
+          background-color: $modal_background_primary;
+          margin-top: 1rem;
+          li {
+            padding: 1rem 0 1rem 0;
+          }
+          li:hover {
+            cursor: pointer;
+            background-color: $link_primary;
+          }
+        }
+        button {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+        }
+      }
+    }
   }
 }
 
