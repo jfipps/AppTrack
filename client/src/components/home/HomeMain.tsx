@@ -1,5 +1,6 @@
 import React from "react";
 import "../../css/home.scss";
+import HomeContent from "./HomeContent";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 export default function HomeMain() {
@@ -14,7 +15,7 @@ export default function HomeMain() {
           darkModeEnabled ? "HomeMain Home-UI-Dark" : "HomeMain Home-UI-Light"
         }
       >
-        Home Page
+        <HomeContent></HomeContent>
       </div>
     </>
   );

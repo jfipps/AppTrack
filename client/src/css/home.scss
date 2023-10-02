@@ -4,6 +4,8 @@ $background_primary: #1a202c;
 $modal_background_primary: #2d3748;
 $background_light: rgb(247, 248, 253);
 $link_primary: #00a0dc;
+$link_light: #cfcfcf;
+$applied: #00640a;
 
 /* reset */
 * {
@@ -36,18 +38,6 @@ $link_primary: #00a0dc;
         flex-direction: column;
         position: absolute;
         margin-left: 10rem;
-        .Dropdown {
-          list-style: none;
-          background-color: $modal_background_primary;
-          margin-top: 1rem;
-          li {
-            padding: 1rem 0 1rem 0;
-          }
-          li:hover {
-            cursor: pointer;
-            background-color: $link_primary;
-          }
-        }
         button {
           display: flex;
           flex-direction: row;
@@ -55,6 +45,50 @@ $link_primary: #00a0dc;
         }
       }
     }
+  }
+}
+
+.DropdownDark {
+  list-style: none;
+  background-color: $modal_background_primary;
+  margin-top: 1rem;
+  li {
+    padding: 1rem 0 1rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    .DropdownIcon {
+      margin: 0 0.5rem 0 0.5rem;
+    }
+  }
+  li:hover {
+    cursor: pointer;
+    background-color: $link_primary;
+  }
+}
+
+.DropdownLight {
+  list-style: none;
+  background-color: $text_color;
+  margin-top: 1rem;
+  li:first-child {
+    border-top: 1px solid $modal_background_primary;
+  }
+  li {
+    padding: 1rem 0 1rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid $modal_background_primary;
+    .DropdownIcon {
+      margin: 0 0.5rem 0 0.5rem;
+    }
+  }
+  li:hover {
+    cursor: pointer;
+    background-color: $link_light;
   }
 }
 
@@ -99,7 +133,7 @@ $link_primary: #00a0dc;
   }
   button:hover {
     cursor: pointer;
-    background-color: #cfcfcf;
+    background-color: $link_light;
   }
 }
 
@@ -130,4 +164,139 @@ $link_primary: #00a0dc;
 .Home-UI-Light {
   background-color: $background_light;
   color: $text_color_alt;
+}
+
+// home content
+
+.HomeContent {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 50%;
+  align-items: center;
+  border: 1px solid red;
+}
+
+.SidebarFilters {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  width: 30%;
+  align-items: center;
+}
+
+.Filter {
+  width: 85%;
+  height: auto;
+  padding: 2rem 0 2rem 0;
+  margin-top: 2rem;
+  background-color: $modal_background_primary;
+  border-radius: 0.5rem;
+}
+
+.JobContainer {
+  width: 70%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.AddJob {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  padding: 2rem 0 2rem 0;
+  border: 1px solid pink;
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+}
+
+.JobList {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.JobList::-webkit-scrollbar {
+  display: none;
+}
+
+// job card
+
+.Job {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: $modal_background_primary;
+  margin-bottom: 3rem;
+  .JobInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 50%;
+    #date {
+      font-size: 1.5rem;
+      padding-bottom: 0.5rem;
+    }
+    #title {
+      font-size: 1.25rem;
+      padding-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    #desc {
+      color: $link_light;
+      padding-bottom: 0.5rem;
+    }
+    #link {
+      text-decoration: none;
+      color: $text_color;
+      font-weight: bold;
+    }
+  }
+  .JobStatus {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 50%;
+    height: 100%;
+    .StatusContainer {
+      position: relative;
+      .JobStatusDropdownButton {
+        padding: 0.5rem 2rem 0.5rem 2rem;
+        background-color: $applied;
+        border-radius: 0.5rem;
+        border: none;
+        color: $text_color;
+      }
+      .JobStatusDropdownButton:hover {
+        cursor: pointer;
+      }
+      .JobStatusDropdown {
+        list-style: none;
+        background-color: $modal_background_primary;
+        border: 0.5px solid $background_primary;
+        border-radius: 0.5rem;
+        margin-top: 0.5rem;
+        padding: 0rem 1rem 0rem 1rem;
+        position: absolute;
+        top: 2rem;
+        right: 0.5rem;
+      }
+    }
+  }
 }
