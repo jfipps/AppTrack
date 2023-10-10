@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const togglesSlice = createSlice({
   name: "toggles",
@@ -6,6 +6,8 @@ const togglesSlice = createSlice({
     isLoading: true,
     userDropdownOpen: false,
     darkModeEnabled: true,
+    jobDropdownIndex: -1,
+    addJobOpen: false,
   },
   reducers: {
     enableLoading: (state) => {
@@ -26,6 +28,15 @@ const togglesSlice = createSlice({
     closeDropdown: (state) => {
       state.userDropdownOpen = false;
     },
+    setJobIndex: (state, action: PayloadAction<number>) => {
+      state.jobDropdownIndex = action.payload;
+    },
+    openAddJob: (state) => {
+      state.addJobOpen = true;
+    },
+    closeAddJob: (state) => {
+      state.addJobOpen = false;
+    },
   },
 });
 
@@ -36,6 +47,9 @@ export const {
   closeDropdown,
   disableDarkMode,
   enableDarkMode,
+  setJobIndex,
+  openAddJob,
+  closeAddJob,
 } = togglesSlice.actions;
 
 export default togglesSlice.reducer;

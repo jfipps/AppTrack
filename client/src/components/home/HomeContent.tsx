@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import JobList from "./JobList";
+import JobControls from "./JobControls";
 
 export default function HomeContent() {
   return (
@@ -10,7 +11,7 @@ export default function HomeContent() {
         <div className="Filter">Status</div>
       </div>
       <div className="JobContainer">
-        <div className="AddJob"></div>
+        <JobControls></JobControls>
         <JobList></JobList>
       </div>
     </section>

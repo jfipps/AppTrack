@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import "../../css/home.scss";
 import HomeContent from "./HomeContent";
+import AddJob from "./AddJob";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 export default function HomeMain() {
@@ -16,6 +17,7 @@ export default function HomeMain() {
         }
       >
         <HomeContent></HomeContent>
+        <AddJob></AddJob>
       </div>
     </>
   );

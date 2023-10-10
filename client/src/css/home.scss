@@ -143,9 +143,9 @@ $applied: #00640a;
   height: 95%;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
+  justify-content: center;
   a {
     text-decoration: none;
     color: $link_primary;
@@ -174,7 +174,6 @@ $applied: #00640a;
   height: 100%;
   width: 50%;
   align-items: center;
-  border: 1px solid red;
 }
 
 .SidebarFilters {
@@ -202,15 +201,29 @@ $applied: #00640a;
   align-items: center;
 }
 
-.AddJob {
+.JobControls {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   width: 100%;
   height: auto;
-  padding: 2rem 0 2rem 0;
+  padding: 2rem 3rem 2rem 3rem;
   border: 1px solid pink;
   border-radius: 0.5rem;
   margin-top: 2rem;
+  background-color: $modal_background_primary;
+  .SortingOptions {
+    width: 30%;
+    padding: 0.5rem 0 0.5rem 0.25rem;
+    border-radius: 0.5rem;
+    background-color: $modal_background_primary;
+    color: $text_color;
+  }
+  .AddJobButton {
+    width: 25%;
+    border: 0.5rem;
+    padding: 0.5rem;
+  }
 }
 
 .JobList {
@@ -296,7 +309,27 @@ $applied: #00640a;
         position: absolute;
         top: 2rem;
         right: 0.5rem;
+        li:hover {
+          cursor: pointer;
+        }
       }
     }
   }
+}
+
+// add job
+
+.AddJobSidebar {
+  position: absolute;
+  right: 0;
+  height: 100vh;
+  width: 20%;
+  background-color: $modal_background_primary;
+  -webkit-transition: -webkit-transform ease-in-out 0.5s;
+  -webkit-transform-origin: top;
+  -webkit-transition-delay: 0.1s;
+}
+
+.Closed {
+  -webkit-transform: translateX(100%);
 }

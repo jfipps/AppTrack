@@ -1,15 +1,53 @@
 import React from "react";
 import "../../css/home.scss";
 
-export default function JobStatusDropdown() {
+type JobStatusPropsType = {
+  changeJobStatus: (index: number, status: string) => void;
+  index: number;
+};
+
+export default function JobStatusDropdown({
+  changeJobStatus,
+  index,
+}: JobStatusPropsType) {
   return (
     <ul className="JobStatusDropdown">
-      <li className="StatusItem">Applied</li>
-      <li className="StatusItem">Closed</li>
-      <li className="StatusItem">Assessment</li>
-      <li className="StatusItem">Interview</li>
-      <li className="StatusItem">Offer</li>
-      <li className="StatusItem">Rejected</li>
+      <li
+        className="StatusItem"
+        onClick={() => changeJobStatus(index, "Applied")}
+      >
+        Applied
+      </li>
+      <li
+        className="StatusItem"
+        onClick={() => changeJobStatus(index, "Closed")}
+      >
+        Closed
+      </li>
+      <li
+        className="StatusItem"
+        onClick={() => changeJobStatus(index, "Assessment")}
+      >
+        Assessment
+      </li>
+      <li
+        className="StatusItem"
+        onClick={() => changeJobStatus(index, "Interview")}
+      >
+        Interview
+      </li>
+      <li
+        className="StatusItem"
+        onClick={() => changeJobStatus(index, "Offer")}
+      >
+        Offer
+      </li>
+      <li
+        className="StatusItem"
+        onClick={() => changeJobStatus(index, "Applied")}
+      >
+        Rejected
+      </li>
     </ul>
   );
 }
