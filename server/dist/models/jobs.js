@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Jobs = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const jobSchema = new mongoose_1.default.Schema({
-    username: {
+    email: {
         type: String,
         required: true,
     },
@@ -19,6 +19,10 @@ const jobSchema = new mongoose_1.default.Schema({
         required: true,
     },
     jobPostLink: {
+        type: String,
+        required: false,
+    },
+    jobPostDesc: {
         type: String,
         required: false,
     },

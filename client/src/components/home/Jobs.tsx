@@ -16,6 +16,7 @@ export default function Jobs() {
 
   const [jobData, setJobData] = useState([
     {
+      company: "Company A",
       date: "Sept 23, 2023",
       title: "Front End",
       desc: "This is the first desc",
@@ -23,6 +24,7 @@ export default function Jobs() {
       status: "Applied",
     },
     {
+      company: "Company B",
       date: "Sept 24, 2023",
       title: "Front End 1",
       desc: "This is the second desc",
@@ -30,6 +32,7 @@ export default function Jobs() {
       status: "Denied",
     },
     {
+      company: "Company C",
       date: "Sept 25, 2023",
       title: "Front End 3",
       desc: "This is the third desc",
@@ -78,6 +81,7 @@ export default function Jobs() {
           <article key={index} className="Job">
             <div className="JobInfo">
               <span id="date">{job.date}</span>
+              <span id="company">{job.company}</span>
               <span id="title">{job.title}</span>
               <span id="desc">{job.desc}</span>
               <a id="link">{job.link}</a>

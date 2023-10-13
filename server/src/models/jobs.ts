@@ -1,20 +1,22 @@
 import mongoose from "mongoose";
 
 interface IJob extends mongoose.Document {
-  username: string;
+  email: string;
   jobTitle: string;
   companyName: string;
   jobPostLink: string;
+  jobPostDesc: string;
   applicationStatus: string;
   applicationDate: Date;
 }
 
 interface IJobMethods {
   getJob(): {
-    username: string;
+    email: string;
     jobTitle: string;
     companyName: string;
     jobPostLink: string;
+    jobPostDesc: string;
     applicationStatus: string;
     applicationDate: Date;
   };
@@ -22,7 +24,7 @@ interface IJobMethods {
 
 const jobSchema = new mongoose.Schema<IJob, IJobMethods>(
   {
-    username: {
+    email: {
       type: String,
       required: true,
     },
@@ -35,6 +37,10 @@ const jobSchema = new mongoose.Schema<IJob, IJobMethods>(
       required: true,
     },
     jobPostLink: {
+      type: String,
+      required: false,
+    },
+    jobPostDesc: {
       type: String,
       required: false,
     },
@@ -53,10 +59,11 @@ const jobSchema = new mongoose.Schema<IJob, IJobMethods>(
 );
 
 jobSchema.methods.getJob = function (): {
-  username: string;
+  email: string;
   jobTitle: string;
   companyName: string;
   jobPostLink: string;
+  jobPostDesc: string;
   applicationStatus: string;
   applicationDate: Date;
 } {

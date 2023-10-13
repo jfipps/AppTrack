@@ -4,6 +4,7 @@ const addJobSlice = createSlice({
   name: "addJob",
   initialState: {
     jobTitle: "",
+    companyName: "",
     jobDesc: "",
     jobLink: "",
     jobStatus: "",
@@ -21,10 +22,18 @@ const addJobSlice = createSlice({
     updateJobStatus: (state, action: PayloadAction<string>) => {
       state.jobStatus = action.payload;
     },
+    updateCompanyName: (state, action: PayloadAction<string>) => {
+      state.companyName = action.payload;
+    },
   },
 });
 
-export const { updateJobTitle, updateJobDesc, updateJobLink, updateJobStatus } =
-  addJobSlice.actions;
+export const {
+  updateJobTitle,
+  updateJobDesc,
+  updateJobLink,
+  updateJobStatus,
+  updateCompanyName,
+} = addJobSlice.actions;
 
 export default addJobSlice.reducer;

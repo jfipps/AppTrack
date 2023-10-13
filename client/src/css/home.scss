@@ -4,6 +4,7 @@ $background_primary: #1a202c;
 $modal_background_primary: #2d3748;
 $background_light: rgb(247, 248, 253);
 $link_primary: #00a0dc;
+$link_hover: #0184b4;
 $link_light: #cfcfcf;
 $applied: #00640a;
 
@@ -146,6 +147,7 @@ $applied: #00640a;
   flex-direction: row;
   justify-content: flex-start;
   justify-content: center;
+  overflow-x: hidden;
   a {
     text-decoration: none;
     color: $link_primary;
@@ -223,6 +225,13 @@ $applied: #00640a;
     width: 25%;
     border: 0.5rem;
     padding: 0.5rem;
+    color: $text_color;
+    border-radius: 0.5rem;
+    background-color: $link_primary;
+  }
+  .AddJobButton:hover {
+    cursor: pointer;
+    background-color: $link_hover;
   }
 }
 
@@ -265,8 +274,13 @@ $applied: #00640a;
       font-size: 1.5rem;
       padding-bottom: 0.5rem;
     }
-    #title {
+    #company {
       font-size: 1.25rem;
+      padding-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    #title {
+      font-size: 1rem;
       padding-bottom: 0.5rem;
       font-weight: bold;
     }
@@ -320,16 +334,100 @@ $applied: #00640a;
 // add job
 
 .AddJobSidebar {
-  position: absolute;
+  position: relative;
   right: 0;
-  height: 100vh;
+  height: 100%;
   width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: $modal_background_primary;
+  -webkit-transform: translateX(75%);
   -webkit-transition: -webkit-transform ease-in-out 0.5s;
   -webkit-transform-origin: top;
   -webkit-transition-delay: 0.1s;
+  .CloseButtonSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    #close-button:hover {
+      cursor: pointer;
+    }
+  }
+  .AddJobForm {
+    padding-top: 3rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .JobFormInput {
+      width: 95%;
+      height: auto;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      label {
+        font-size: 1rem;
+      }
+      textarea {
+        min-width: 100%;
+        max-width: 100%;
+        margin-top: 0.35rem;
+        border-radius: 0.5rem;
+        background-color: $modal_background_primary;
+        color: $text_color;
+        padding: 0.75rem;
+        border: 1px solid gray;
+      }
+      input {
+        margin-top: 0.35rem;
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        background-color: $modal_background_primary;
+        color: $text_color;
+        border: 1px solid gray;
+      }
+      select {
+        margin-top: 0.35rem;
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        background-color: $modal_background_primary;
+        color: $text_color;
+      }
+      textarea:focus,
+      input:focus,
+      select:focus {
+        outline: none;
+      }
+    }
+    .JobFormSubmit {
+      width: 95%;
+      height: auto;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      button {
+        padding: 0.75rem 2.5rem 0.75rem 2.5rem;
+        background-color: $link_primary;
+        color: $text_color;
+        border-radius: 0.5rem;
+        border: none;
+      }
+      button:hover {
+        cursor: pointer;
+        background-color: $link_hover;
+      }
+    }
+  }
 }
 
 .Closed {
-  -webkit-transform: translateX(100%);
+  -webkit-transform: translateX(200%);
 }

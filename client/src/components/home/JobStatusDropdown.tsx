@@ -44,7 +44,7 @@ export default function JobStatusDropdown({
       </li>
       <li
         className="StatusItem"
-        onClick={() => changeJobStatus(index, "Applied")}
+        onClick={() => changeJobStatus(index, "Rejected")}
       >
         Rejected
       </li>

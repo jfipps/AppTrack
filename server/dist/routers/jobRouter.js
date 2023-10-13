@@ -9,10 +9,11 @@ const express_1 = __importDefault(require("express"));
 const jobs_1 = require("../models/jobs");
 require("../db/mongoose");
 exports.router = express_1.default.Router();
-// get all jobs (dev)
-exports.router.get("/jobs", async (req, res) => {
+// get user's jobs
+exports.router.get("/user/jobs", sessionCheck, async (req, res) => {
+    var _a;
     try {
-        const data = await jobs_1.Jobs.find({});
+        const data = await jobs_1.Jobs.find({ email: { $eq: (_a = req.session.user) === null || _a === void 0 ? void 0 : _a.email } });
         console.log("Jobs found");
         res.status(200).send(data);
     }
@@ -23,7 +24,7 @@ exports.router.get("/jobs", async (req, res) => {
 // add job linked to currently logged in user's account
 exports.router.post("/CreateJob", sessionCheck, async (req, res) => {
     var _a;
-    req.body.username = (_a = req.session.user) === null || _a === void 0 ? void 0 : _a.email;
+    req.body.email = (_a = req.session.user) === null || _a === void 0 ? void 0 : _a.email;
     const job = new jobs_1.Jobs(req.body);
     try {
         await job.save();

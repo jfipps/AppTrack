@@ -5,10 +5,10 @@ import { Jobs } from "../models/jobs";
 require("../db/mongoose");
 export const router = express.Router();
 
-// get all jobs (dev)
-router.get("/jobs", async (req: Request, res: Response) => {
+// get user's jobs
+router.get("/user/jobs", sessionCheck, async (req: Request, res: Response) => {
   try {
-    const data = await Jobs.find({});
+    const data = await Jobs.find({ email: { $eq: req.session.user?.email } });
     console.log("Jobs found");
     res.status(200).send(data);
   } catch (err) {
@@ -18,7 +18,7 @@ router.get("/jobs", async (req: Request, res: Response) => {
 
 // add job linked to currently logged in user's account
 router.post("/CreateJob", sessionCheck, async (req: Request, res: Response) => {
-  req.body.username = req.session.user?.email;
+  req.body.email = req.session.user?.email;
   const job = new Jobs(req.body);
   try {
     await job.save();
