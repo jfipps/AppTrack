@@ -8,6 +8,7 @@ export const sessionCheck = (
   res: Response,
   next: NextFunction
 ) => {
+  console.log("Session", req.session);
   const { user } = req.session;
   if (!user) {
     console.log("Fail");

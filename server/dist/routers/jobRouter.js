@@ -25,6 +25,8 @@ exports.router.get("/user/jobs", sessionCheck, async (req, res) => {
 exports.router.post("/CreateJob", sessionCheck, async (req, res) => {
     var _a;
     req.body.email = (_a = req.session.user) === null || _a === void 0 ? void 0 : _a.email;
+    console.log("Body");
+    console.log(req.body);
     const job = new jobs_1.Jobs(req.body);
     try {
         await job.save();
@@ -36,9 +38,11 @@ exports.router.post("/CreateJob", sessionCheck, async (req, res) => {
 });
 // update job application status
 exports.router.post("/UpdateAppStatus", sessionCheck, async (req, res) => {
-    const currJob = await jobs_1.Jobs.findOneAndUpdate({ _id: req.body.jobID }, { applicationStatus: req.body.newStatus });
+    console.log(req.body);
+    const currJob = await jobs_1.Jobs.findOneAndUpdate({ _id: req.body.jobID }, { jobStatus: req.body.newStatus });
     try {
         currJob === null || currJob === void 0 ? void 0 : currJob.save();
+        console.log(currJob);
         res.status(200).send({ message: "Job Status Updated" });
     }
     catch (e) {

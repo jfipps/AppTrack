@@ -7,7 +7,7 @@ const addJobSlice = createSlice({
     companyName: "",
     jobDesc: "",
     jobLink: "",
-    jobStatus: "",
+    jobStatus: "Applied",
   },
   reducers: {
     updateJobTitle: (state, action: PayloadAction<string>) => {

@@ -4,9 +4,9 @@ interface IJob extends mongoose.Document {
   email: string;
   jobTitle: string;
   companyName: string;
-  jobPostLink: string;
-  jobPostDesc: string;
-  applicationStatus: string;
+  jobLink: string;
+  jobDesc: string;
+  jobStatus: string;
   applicationDate: Date;
 }
 
@@ -15,9 +15,9 @@ interface IJobMethods {
     email: string;
     jobTitle: string;
     companyName: string;
-    jobPostLink: string;
-    jobPostDesc: string;
-    applicationStatus: string;
+    jobLink: string;
+    jobDesc: string;
+    jobStatus: string;
     applicationDate: Date;
   };
 }
@@ -36,15 +36,15 @@ const jobSchema = new mongoose.Schema<IJob, IJobMethods>(
       type: String,
       required: true,
     },
-    jobPostLink: {
+    jobLink: {
       type: String,
       required: false,
     },
-    jobPostDesc: {
+    jobDesc: {
       type: String,
       required: false,
     },
-    applicationStatus: {
+    jobStatus: {
       type: String,
       required: true,
     },
@@ -62,9 +62,9 @@ jobSchema.methods.getJob = function (): {
   email: string;
   jobTitle: string;
   companyName: string;
-  jobPostLink: string;
-  jobPostDesc: string;
-  applicationStatus: string;
+  jobLink: string;
+  jobDesc: string;
+  jobStatus: string;
   applicationDate: Date;
 } {
   const job = this;

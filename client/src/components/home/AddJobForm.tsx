@@ -24,16 +24,51 @@ export default function AddJobForm() {
     dispatch(updateJobStatus(""));
     dispatch(updateJobTitle(""));
     dispatch(updateJobDesc(""));
+    dispatch(updateCompanyName(""));
     dispatch(closeAddJob());
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const date = new Date();
-    console.log(jobTitle, jobDesc, jobLink, jobStatus);
-    console.log(
-      `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`
-    );
+
+    if (jobStatus === "") {
+      dispatch(updateJobStatus("Applied"));
+    }
+
+    try {
+      const body = {
+        jobTitle: jobTitle,
+        jobDesc: jobDesc,
+        jobLink: jobLink,
+        jobStatus: jobStatus,
+        companyName: companyName,
+        applicationDate: `${
+          date.getMonth() + 1
+        }-${date.getDate()}-${date.getFullYear()}`,
+      };
+
+      fetch("http://localhost:5001/CreateJob", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+        credentials: "include",
+      }).then((res) => {
+        res.json().then((data) => {
+          console.log(data);
+        });
+      });
+      dispatch(updateJobLink(""));
+      dispatch(updateJobStatus(""));
+      dispatch(updateJobTitle(""));
+      dispatch(updateJobDesc(""));
+      dispatch(updateCompanyName(""));
+      dispatch(closeAddJob());
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -94,6 +129,7 @@ export default function AddJobForm() {
             className="JobStatusSelect"
             onChange={(e) => dispatch(updateJobStatus(e.target.value))}
             value={jobStatus}
+            defaultValue="Applied"
           >
             <option value="Applied">Applied</option>
             <option value="Interview">Interview</option>

@@ -18,15 +18,15 @@ const jobSchema = new mongoose_1.default.Schema({
         type: String,
         required: true,
     },
-    jobPostLink: {
+    jobLink: {
         type: String,
         required: false,
     },
-    jobPostDesc: {
+    jobDesc: {
         type: String,
         required: false,
     },
-    applicationStatus: {
+    jobStatus: {
         type: String,
         required: true,
     },

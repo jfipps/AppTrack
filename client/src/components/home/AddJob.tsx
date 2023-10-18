@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import AddJobForm from "./AddJobForm";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { closeAddJob } from "../../store/slices/toggles";
@@ -10,19 +10,26 @@ export default function AddJob({}) {
 
   const dispatch = useAppDispatch();
 
+  let clickHandler = (event: MouseEvent) => {
+    var element = event.target as HTMLElement;
+    if (
+      sidebarRef.current &&
+      !sidebarRef.current.contains(event.target as Node) &&
+      element.innerHTML !== "Add Job" &&
+      !element.classList.contains("JobStatusDropdownButton")
+    ) {
+      dispatch(closeAddJob());
+    }
+  };
+
   useEffect(() => {
-    let clickHandler = (event: MouseEvent) => {
-      var element = event.target as HTMLElement;
-      if (
-        sidebarRef.current &&
-        !sidebarRef.current.contains(event.target as Node) &&
-        element.innerHTML !== "Add Job"
-      ) {
-        dispatch(closeAddJob());
-      }
+    document.addEventListener("mouseup", clickHandler);
+
+    return () => {
+      // cleanup
+      window.removeEventListener("mousedown", clickHandler);
     };
-    document.addEventListener("mousedown", clickHandler);
-  }, []);
+  });
 
   return (
     <section
