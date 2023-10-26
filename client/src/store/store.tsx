@@ -4,7 +4,7 @@ import signupReducer from "./slices/signup";
 import loginReducer from "./slices/login";
 import togglesReducer from "./slices/toggles";
 import addjobReducer from "./slices/addjob";
-import addjob from "./slices/addjob";
+import editJobReducer from "./slices/editjob";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +13,7 @@ export const store = configureStore({
     login: loginReducer,
     toggles: togglesReducer,
     addJob: addjobReducer,
+    editJob: editJobReducer,
   },
 });
 

@@ -8,6 +8,7 @@ const togglesSlice = createSlice({
     darkModeEnabled: true,
     jobDropdownIndex: -1,
     addJobOpen: false,
+    editJobOpen: false,
   },
   reducers: {
     enableLoading: (state) => {
@@ -37,6 +38,12 @@ const togglesSlice = createSlice({
     closeAddJob: (state) => {
       state.addJobOpen = false;
     },
+    openEditJob: (state) => {
+      state.editJobOpen = true;
+    },
+    closeEditJob: (state) => {
+      state.editJobOpen = false;
+    },
   },
 });
 
@@ -50,6 +57,8 @@ export const {
   setJobIndex,
   openAddJob,
   closeAddJob,
+  openEditJob,
+  closeEditJob,
 } = togglesSlice.actions;
 
 export default togglesSlice.reducer;

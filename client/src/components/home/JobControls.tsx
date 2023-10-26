@@ -2,7 +2,12 @@ import React, { useRef } from "react";
 import { closeAddJob, openAddJob } from "../../store/slices/toggles";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
-export default function JobControls() {
+interface Props {
+  setDateSort: React.Dispatch<React.SetStateAction<string>>;
+  dateSort: string;
+}
+
+export default function JobControls({ setDateSort, dateSort }: Props) {
   const addJobOpen = useAppSelector((state) => state.toggles.addJobOpen);
 
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -17,12 +22,23 @@ export default function JobControls() {
     }
   };
 
+  const handleJobSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    e.preventDefault();
+    setDateSort(e.target.value);
+  };
+
   return (
     <>
       <div className="JobControls">
-        <select name="sorting" id="sorting-options" className="SortingOptions">
-          <option value="newest">Newest</option>
-          <option value="oldest">Oldest</option>
+        <select
+          name="sorting"
+          id="sorting-options"
+          className="SortingOptions"
+          onChange={(e) => handleJobSort(e)}
+          value={dateSort}
+        >
+          <option value="Newest">Newest</option>
+          <option value="Oldest">Oldest</option>
         </select>
         <button
           className="AddJobButton"

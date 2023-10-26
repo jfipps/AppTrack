@@ -7,6 +7,10 @@ $link_primary: #00a0dc;
 $link_hover: #0184b4;
 $link_light: #cfcfcf;
 $applied: #00640a;
+$interview: #a206f6;
+$assessment: #057cf3;
+$offer: #001aff;
+$rejected: #fa0000;
 
 /* reset */
 * {
@@ -210,7 +214,7 @@ $applied: #00640a;
   justify-content: space-between;
   width: 100%;
   height: 10%;
-  padding: 2rem 3rem 2rem 3rem;
+  padding: 2rem 1rem 2rem 1rem;
   border-radius: 0.5rem;
   margin-top: 2rem;
   background-color: $modal_background_primary;
@@ -309,32 +313,34 @@ $applied: #00640a;
         padding: 0.5rem 2rem 0.5rem 2rem;
         border: none;
         border-radius: 0.5rem;
-        background-color: $applied;
         color: $text_color;
-      }
-      .JobStatusDropdownButton {
-        padding: 0.5rem 2rem 0.5rem 2rem;
-        background-color: $applied;
-        border-radius: 0.5rem;
-        border: none;
-        color: $text_color;
-      }
-      .JobStatusDropdownButton:hover {
-        cursor: pointer;
-      }
-      .JobStatusDropdown {
-        list-style: none;
-        background-color: $modal_background_primary;
-        border: 0.5px solid $background_primary;
-        border-radius: 0.5rem;
-        margin-top: 0.5rem;
-        padding: 0rem 1rem 0rem 1rem;
-        position: relative;
-        top: 2rem;
-        right: 0.5rem;
-        li:hover {
-          cursor: pointer;
+        option {
+          background-color: $modal_background_primary;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
         }
+      }
+      // .JobStatusSelect:focus {
+      //   outline: none;
+      // }
+      // .JobStatusSelect:hover {
+      //   cursor: pointer;
+      // }
+      .Applied {
+        background-color: $applied;
+      }
+      .Interview {
+        background-color: $interview;
+      }
+      .Assessment {
+        background-color: $assessment;
+      }
+      .Offer {
+        background-color: $offer;
+      }
+      .Rejected {
+        background-color: $rejected;
       }
     }
   }
@@ -367,6 +373,105 @@ $applied: #00640a;
     }
   }
   .AddJobForm {
+    padding-top: 3rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Lato", sans-serif;
+    .JobFormInput {
+      width: 95%;
+      height: auto;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      label {
+        font-size: 1rem;
+      }
+      textarea {
+        min-width: 100%;
+        max-width: 100%;
+        margin-top: 0.35rem;
+        border-radius: 0.5rem;
+        background-color: $modal_background_primary;
+        color: $text_color;
+        padding: 0.75rem;
+        border: 1px solid gray;
+        font-family: "Lato", sans-serif;
+      }
+      input {
+        margin-top: 0.35rem;
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        background-color: $modal_background_primary;
+        color: $text_color;
+        border: 1px solid gray;
+      }
+      select {
+        margin-top: 0.35rem;
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        background-color: $modal_background_primary;
+        color: $text_color;
+      }
+      textarea:focus,
+      input:focus,
+      select:focus {
+        outline: none;
+      }
+    }
+    .JobFormSubmit {
+      width: 95%;
+      height: auto;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      button {
+        padding: 0.75rem 2.5rem 0.75rem 2.5rem;
+        background-color: $link_primary;
+        color: $text_color;
+        border-radius: 0.5rem;
+        border: none;
+      }
+      button:hover {
+        cursor: pointer;
+        background-color: $link_hover;
+      }
+    }
+  }
+}
+
+// edit job
+
+.EditJobSidebar {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $modal_background_primary;
+  -webkit-transform: translateX(0%);
+  -webkit-transition: -webkit-transform ease-in-out 0.5s;
+  -webkit-transform-origin: top;
+  -webkit-transition-delay: 0.1s;
+  .CloseButtonSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    #close-button:hover {
+      cursor: pointer;
+    }
+  }
+  .EditJobForm {
     padding-top: 3rem;
     width: 100%;
     display: flex;

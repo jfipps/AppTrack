@@ -7,21 +7,23 @@ import {
   updateJobLink,
   updateJobStatus,
   updateCompanyName,
-} from "../../store/slices/addjob";
-import { closeAddJob } from "../../store/slices/toggles";
+  updateJobID,
+} from "../../store/slices/editjob";
+import { closeEditJob } from "../../store/slices/toggles";
 
 interface Props {
   getUserJobs: () => void;
 }
 
-export default function AddJobForm({ getUserJobs }: Props) {
+export default function EditJobForm({ getUserJobs }: Props) {
   const dispatch = useAppDispatch();
 
-  const jobTitle = useAppSelector((state) => state.addJob.jobTitle);
-  const jobDesc = useAppSelector((state) => state.addJob.jobDesc);
-  const jobLink = useAppSelector((state) => state.addJob.jobLink);
-  const jobStatus = useAppSelector((state) => state.addJob.jobStatus);
-  const companyName = useAppSelector((state) => state.addJob.companyName);
+  const jobTitle = useAppSelector((state) => state.editJob.jobTitle);
+  const jobDesc = useAppSelector((state) => state.editJob.jobDesc);
+  const jobLink = useAppSelector((state) => state.editJob.jobLink);
+  const jobStatus = useAppSelector((state) => state.editJob.jobStatus);
+  const companyName = useAppSelector((state) => state.editJob.companyName);
+  const jobID = useAppSelector((state) => state.editJob.jobID);
 
   const closeButtonHandler = () => {
     dispatch(updateJobLink(""));
@@ -29,17 +31,12 @@ export default function AddJobForm({ getUserJobs }: Props) {
     dispatch(updateJobTitle(""));
     dispatch(updateJobDesc(""));
     dispatch(updateCompanyName(""));
-    dispatch(closeAddJob());
+    dispatch(updateJobID(""));
+    dispatch(closeEditJob());
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const date = new Date();
-
-    if (jobStatus === "") {
-      dispatch(updateJobStatus("Applied"));
-    }
-
     try {
       const body = {
         jobTitle: jobTitle,
@@ -47,12 +44,10 @@ export default function AddJobForm({ getUserJobs }: Props) {
         jobLink: jobLink,
         jobStatus: jobStatus,
         companyName: companyName,
-        applicationDate: `${
-          date.getMonth() + 1
-        }-${date.getDate()}-${date.getFullYear()}`,
+        jobID: jobID,
       };
 
-      fetch("http://localhost:5001/CreateJob", {
+      fetch("http://localhost:5001/EditJob", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,7 +65,7 @@ export default function AddJobForm({ getUserJobs }: Props) {
       dispatch(updateJobTitle(""));
       dispatch(updateJobDesc(""));
       dispatch(updateCompanyName(""));
-      dispatch(closeAddJob());
+      dispatch(closeEditJob());
     } catch (e) {
       console.log(e);
     }
@@ -86,7 +81,7 @@ export default function AddJobForm({ getUserJobs }: Props) {
           onClick={closeButtonHandler}
         ></AiOutlineClose>
       </div>
-      <form id="add-job-form" className="AddJobForm" onSubmit={handleSubmit}>
+      <form id="edit-job-form" className="EditJobForm" onSubmit={handleSubmit}>
         <div className="JobFormInput">
           <label>Company</label>
           <input
@@ -140,11 +135,12 @@ export default function AddJobForm({ getUserJobs }: Props) {
             <option value="Interview">Interview</option>
             <option value="Assessment">Assessment</option>
             <option value="Offer">Offer</option>
-            <option value="Closed">Closed</option>
+            <option value="Rejected">Rejected</option>
           </select>
         </div>
         <div className="JobFormSubmit">
-          <button className="FormSubmit">Add Job</button>
+          <button className="FormSubmit">Delete Job</button>
+          <button className="FormSubmit">Edit Job</button>
         </div>
       </form>
     </>

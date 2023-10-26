@@ -3,7 +3,11 @@ import AddJobForm from "./AddJobForm";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { closeAddJob } from "../../store/slices/toggles";
 
-export default function AddJob({}) {
+interface Props {
+  getUserJobs: () => void;
+}
+
+export default function AddJob({ getUserJobs }: Props) {
   const sidebarRef = useRef<HTMLElement>(null);
 
   const addJobOpen = useAppSelector((state) => state.toggles.addJobOpen);
@@ -27,7 +31,7 @@ export default function AddJob({}) {
 
     return () => {
       // cleanup
-      window.removeEventListener("mousedown", clickHandler);
+      window.removeEventListener("mouseup", clickHandler);
     };
   });
 
@@ -36,9 +40,7 @@ export default function AddJob({}) {
       className={addJobOpen ? "AddJobSidebar" : "AddJobSidebar Closed"}
       ref={sidebarRef}
     >
-      <AddJobForm></AddJobForm>
+      <AddJobForm getUserJobs={getUserJobs}></AddJobForm>
     </section>
   );
 }
-
-// work on off click sidebar. Button don't work

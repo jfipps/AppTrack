@@ -1,8 +1,32 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import JobList from "./JobList";
 import JobControls from "./JobControls";
 
-export default function HomeContent() {
+interface iJobs {
+  applicationDate: Date;
+  applicationStatus: String;
+  email: String;
+  jobDesc: String;
+  jobLink: String;
+  jobTitle: String;
+  jobStatus: String;
+  companyName: String;
+  _id: String;
+}
+
+interface Props {
+  jobData: iJobs[];
+  getUserJobs: () => void;
+  setDateSort: React.Dispatch<React.SetStateAction<string>>;
+  dateSort: string;
+}
+
+export default function HomeContent({
+  jobData,
+  getUserJobs,
+  setDateSort,
+  dateSort,
+}: Props) {
   return (
     <section className="HomeContent">
       <div className="SidebarFilters">
@@ -11,8 +35,11 @@ export default function HomeContent() {
         <div className="Filter">Status</div>
       </div>
       <div className="JobContainer">
-        <JobControls></JobControls>
-        <JobList></JobList>
+        <JobControls
+          setDateSort={setDateSort}
+          dateSort={dateSort}
+        ></JobControls>
+        <JobList jobData={jobData} getUserJobs={getUserJobs}></JobList>
       </div>
     </section>
   );
