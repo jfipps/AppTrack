@@ -37,6 +37,23 @@ exports.router.get("/user/jobs/Oldest", sessionCheck, async (req, res) => {
         res.status(401).send(err);
     }
 });
+// job filter get request
+exports.router.get("/user/jobs/:Status", sessionCheck, async (req, res) => {
+    var _a;
+    let query = req.params.Status;
+    console.log(query);
+    try {
+        const data = await jobs_1.Jobs.find({
+            email: { $eq: (_a = req.session.user) === null || _a === void 0 ? void 0 : _a.email },
+            jobStatus: { $eq: query },
+        });
+        console.log("Filtered Jobs");
+        res.status(200).send(data);
+    }
+    catch (err) {
+        res.status(401).send(err);
+    }
+});
 // add job linked to currently logged in user's account
 exports.router.post("/CreateJob", sessionCheck, async (req, res) => {
     var _a;
@@ -82,5 +99,22 @@ exports.router.post("/EditJob", sessionCheck, async (req, res) => {
     }
     catch (e) {
         res.status(401).send(e);
+    }
+});
+// search jobs by title
+exports.router.post("/SearchJobs", sessionCheck, async (req, res) => {
+    var _a;
+    const search = req.body.searchQuery.toLowerCase();
+    console.log(search);
+    try {
+        const foundJobs = await jobs_1.Jobs.find({
+            email: { $eq: (_a = req.session.user) === null || _a === void 0 ? void 0 : _a.email },
+            jobTitle: { $regex: ".*" + search + ".*", $options: "i" },
+        });
+        console.log("Jobs found");
+        res.status(200).send(foundJobs);
+    }
+    catch (err) {
+        res.status(401).send(err);
     }
 });

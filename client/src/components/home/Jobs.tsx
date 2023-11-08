@@ -31,6 +31,10 @@ interface Props {
 export default function Jobs({ jobData, getUserJobs }: Props) {
   const editJobOpen = useAppSelector((state) => state.toggles.editJobOpen);
 
+  const darkModeEnabled = useAppSelector(
+    (state) => state.toggles.darkModeEnabled
+  );
+
   const dispatch = useAppDispatch();
 
   const handleEditJobClick = (job: iJobs) => {
@@ -47,38 +51,14 @@ export default function Jobs({ jobData, getUserJobs }: Props) {
     }
   };
 
-  const handleJobStatusClick = (
-    _id: String,
-    e: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    try {
-      const body = {
-        jobID: _id,
-        newStatus: e.target.value,
-      };
-      fetch("http://localhost:5001/UpdateAppStatus", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      }).then((res) => {
-        res.json().then((data) => {
-          console.log(data);
-          getUserJobs();
-        });
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   return (
     <>
       {jobData.map((job, index) => {
         return (
-          <article key={index} className="Job">
+          <article
+            key={index}
+            className={darkModeEnabled ? "Job Job-UI-Dark" : "Job Job-UI-Light"}
+          >
             <div className="JobInfo">
               <span id="date">
                 {job.applicationDate.toString().split("T")[0]}
@@ -90,20 +70,6 @@ export default function Jobs({ jobData, getUserJobs }: Props) {
             </div>
             <div className="JobStatus">
               <div className="StatusContainer">
-                {/* <select
-                  name="job-status"
-                  id="job-status"
-                  className={"JobStatusSelect " + job.jobStatus.toString()}
-                  onChange={(e) => handleJobStatusClick(job._id, e)}
-                  defaultValue={job.jobStatus.toString()}
-                  value={job.jobStatus.toString()}
-                >
-                  <option value="Applied">Applied</option>
-                  <option value="Interview">Interview</option>
-                  <option value="Assessment">Assessment</option>
-                  <option value="Offer">Offer</option>
-                  <option value="Rejected">Rejected</option>
-                </select> */}
                 <div className={"JobStatusSelect " + job.jobStatus.toString()}>
                   {job.jobStatus.toString()}
                 </div>
@@ -113,6 +79,7 @@ export default function Jobs({ jobData, getUserJobs }: Props) {
                 onClick={() => {
                   handleEditJobClick(job);
                 }}
+                className="EditJobButton"
               ></AiTwotoneEdit>
             </div>
           </article>

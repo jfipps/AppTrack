@@ -1,9 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const filterSlice = createSlice({
   name: "filter",
   initialState: {
     darkModeEnabled: true,
+    jobSearch: "",
   },
   reducers: {
     enable: (state) => {
@@ -12,9 +13,12 @@ const filterSlice = createSlice({
     disable: (state) => {
       state.darkModeEnabled = false;
     },
+    updateJobSearch: (state, action: PayloadAction<string>) => {
+      state.jobSearch = action.payload;
+    },
   },
 });
 
-export const { enable, disable } = filterSlice.actions;
+export const { enable, disable, updateJobSearch } = filterSlice.actions;
 
 export default filterSlice.reducer;

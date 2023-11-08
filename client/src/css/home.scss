@@ -2,6 +2,7 @@ $text_color: #ffffff;
 $text_color_alt: #000000;
 $background_primary: #1a202c;
 $modal_background_primary: #2d3748;
+$modal_border_light: #d4d4d4;
 $background_light: rgb(247, 248, 253);
 $link_primary: #00a0dc;
 $link_hover: #0184b4;
@@ -11,6 +12,7 @@ $interview: #a206f6;
 $assessment: #057cf3;
 $offer: #001aff;
 $rejected: #fa0000;
+$search_button: #718096;
 
 /* reset */
 * {
@@ -192,12 +194,225 @@ $rejected: #fa0000;
 }
 
 .Filter {
-  width: 85%;
+  width: 90%;
   height: auto;
   padding: 2rem 0 2rem 0;
   margin-top: 2rem;
-  background-color: $modal_background_primary;
   border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .OptionContainer {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    .StatusFilter {
+      padding: 0.5rem 1rem 0.5rem 1rem;
+      margin: 0.5rem;
+      border-radius: 0.2rem;
+      border: none;
+      color: $text_color;
+    }
+    .StatusFilter:hover {
+      cursor: pointer;
+    }
+    .Applied {
+      background-color: $applied;
+    }
+    .Interview {
+      background-color: $interview;
+    }
+    .Assessment {
+      background-color: $assessment;
+    }
+    .Offer {
+      background-color: $offer;
+    }
+    .Rejected {
+      background-color: $rejected;
+    }
+  }
+  .SearchInput {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 90%;
+    height: auto;
+    border-radius: 0.5rem;
+    border: 1px solid gray;
+    input {
+      padding: 0.5rem 2.5rem 0.5rem 0.5rem;
+      background-color: $modal_background_primary;
+      color: $text_color;
+      font-family: "Lato", sans-serif;
+      border: none;
+    }
+    input:focus {
+      outline: none;
+    }
+    .SearchIcon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0.5rem;
+      background-color: $search_button;
+    }
+    .SearchIcon:hover {
+      cursor: pointer;
+    }
+    button {
+      background-color: none;
+      border: none;
+      color: $text_color;
+    }
+  }
+}
+
+.Filter-UI-Dark {
+  background-color: $modal_background_primary;
+  .OptionContainer {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    .StatusFilter {
+      padding: 0.5rem 1rem 0.5rem 1rem;
+      margin: 0.5rem;
+      border-radius: 0.2rem;
+      border: none;
+      color: $text_color;
+    }
+    .StatusFilter:hover {
+      cursor: pointer;
+    }
+    .Applied {
+      background-color: $applied;
+    }
+    .Interview {
+      background-color: $interview;
+    }
+    .Assessment {
+      background-color: $assessment;
+    }
+    .Offer {
+      background-color: $offer;
+    }
+    .Rejected {
+      background-color: $rejected;
+    }
+  }
+  .SearchInput {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    border: 1px solid gray;
+    input {
+      padding: 0.5rem 2.5rem 0.5rem 0.5rem;
+      background-color: $modal_background_primary;
+      color: $text_color;
+      font-family: "Lato", sans-serif;
+      border: none;
+    }
+    input:focus {
+      outline: none;
+    }
+    .SearchIcon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0.5rem;
+      background-color: $search_button;
+    }
+    .SearchIcon:hover {
+      cursor: pointer;
+    }
+    button {
+      background-color: none;
+      border: none;
+      color: $text_color;
+    }
+  }
+}
+
+.Filter-UI-Light {
+  background-color: $text_color;
+  border: 1px solid $modal_border_light;
+  .OptionContainer {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    .StatusFilter {
+      padding: 0.5rem 1rem 0.5rem 1rem;
+      margin: 0.5rem;
+      border-radius: 0.2rem;
+      border: none;
+      color: $text_color;
+    }
+    .StatusFilter:hover {
+      cursor: pointer;
+    }
+    .Applied {
+      background-color: $applied;
+    }
+    .Interview {
+      background-color: $interview;
+    }
+    .Assessment {
+      background-color: $assessment;
+    }
+    .Offer {
+      background-color: $offer;
+    }
+    .Rejected {
+      background-color: $rejected;
+    }
+  }
+  .SearchInput {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    border: 1px solid gray;
+    input {
+      padding: 0.5rem 2.5rem 0.5rem 0.5rem;
+      background-color: $text_color;
+      color: black;
+      font-family: "Lato", sans-serif;
+      border: none;
+    }
+    input:focus {
+      outline: none;
+    }
+    .SearchIcon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0.5rem;
+      background-color: $search_button;
+    }
+    .SearchIcon:hover {
+      cursor: pointer;
+    }
+    button {
+      background-color: none;
+      border: none;
+      color: $text_color;
+    }
+  }
 }
 
 .JobContainer {
@@ -217,6 +432,9 @@ $rejected: #fa0000;
   padding: 2rem 1rem 2rem 1rem;
   border-radius: 0.5rem;
   margin-top: 2rem;
+}
+
+.Controls-UI-Dark {
   background-color: $modal_background_primary;
   .SortingOptions {
     width: 30%;
@@ -227,12 +445,38 @@ $rejected: #fa0000;
     color: $text_color;
   }
   .AddJobButton {
-    width: 30%;
+    width: 15%;
     height: 125%;
     border: 0.5rem;
     padding: 0.5rem;
     color: $text_color;
+    border-radius: 1rem;
+    background-color: $link_primary;
+  }
+  .AddJobButton:hover {
+    cursor: pointer;
+    background-color: $link_hover;
+  }
+}
+
+.Controls-UI-Light {
+  background-color: $text_color;
+  border: 1px solid $modal_border_light;
+  .SortingOptions {
+    width: 30%;
+    height: 125%;
+    padding: 0.5rem;
     border-radius: 0.5rem;
+    background-color: $text_color;
+    color: black;
+  }
+  .AddJobButton {
+    width: 15%;
+    height: 125%;
+    border: 0.5rem;
+    padding: 0.5rem;
+    color: $text_color;
+    border-radius: 1rem;
     background-color: $link_primary;
   }
   .AddJobButton:hover {
@@ -268,8 +512,11 @@ $rejected: #fa0000;
   height: auto;
   border-radius: 0.5rem;
   padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.Job-UI-Dark {
   background-color: $modal_background_primary;
-  margin-bottom: 3rem;
   .JobInfo {
     display: flex;
     flex-direction: column;
@@ -321,12 +568,6 @@ $rejected: #fa0000;
           justify-content: center;
         }
       }
-      // .JobStatusSelect:focus {
-      //   outline: none;
-      // }
-      // .JobStatusSelect:hover {
-      //   cursor: pointer;
-      // }
       .Applied {
         background-color: $applied;
       }
@@ -342,6 +583,88 @@ $rejected: #fa0000;
       .Rejected {
         background-color: $rejected;
       }
+    }
+    .EditJobButton:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.Job-UI-Light {
+  background-color: $text_color;
+  border: 1px solid $modal_border_light;
+  .JobInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 50%;
+    #date {
+      font-size: 1.5rem;
+      padding-bottom: 0.5rem;
+      color: black;
+    }
+    #company {
+      font-size: 1.25rem;
+      padding-bottom: 0.5rem;
+      font-weight: bold;
+      color: black;
+    }
+    #title {
+      font-size: 1rem;
+      padding-bottom: 0.5rem;
+      font-weight: bold;
+      color: black;
+    }
+    #desc {
+      color: black;
+      padding-bottom: 0.5rem;
+    }
+    #link {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+  }
+  .JobStatus {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 50%;
+    height: 100%;
+    .StatusContainer {
+      .JobStatusSelect {
+        text-align: center;
+        padding: 0.5rem 2rem 0.5rem 2rem;
+        border: none;
+        border-radius: 0.5rem;
+        color: $text_color;
+        option {
+          background-color: $modal_background_primary;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+        }
+      }
+      .Applied {
+        background-color: $applied;
+      }
+      .Interview {
+        background-color: $interview;
+      }
+      .Assessment {
+        background-color: $assessment;
+      }
+      .Offer {
+        background-color: $offer;
+      }
+      .Rejected {
+        background-color: $rejected;
+      }
+    }
+    .EditJobButton:hover {
+      cursor: pointer;
     }
   }
 }
@@ -546,4 +869,38 @@ $rejected: #fa0000;
 
 .Closed {
   -webkit-transform: translateX(100%);
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

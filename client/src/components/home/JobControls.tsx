@@ -10,6 +10,10 @@ interface Props {
 export default function JobControls({ setDateSort, dateSort }: Props) {
   const addJobOpen = useAppSelector((state) => state.toggles.addJobOpen);
 
+  const darkModeEnabled = useAppSelector(
+    (state) => state.toggles.darkModeEnabled
+  );
+
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const dispatch = useAppDispatch();
@@ -29,7 +33,13 @@ export default function JobControls({ setDateSort, dateSort }: Props) {
 
   return (
     <>
-      <div className="JobControls">
+      <div
+        className={
+          darkModeEnabled
+            ? "JobControls Controls-UI-Dark"
+            : "JobControls Controls-UI-Light"
+        }
+      >
         <select
           name="sorting"
           id="sorting-options"

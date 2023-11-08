@@ -16,14 +16,19 @@ interface iJobs {
 interface Props {
   jobData: iJobs[];
   getUserJobs: () => void;
+  loading: boolean;
 }
 
-export default function JobList({ jobData, getUserJobs }: Props) {
+export default function JobList({ jobData, getUserJobs, loading }: Props) {
   return (
     <>
-      <div className="JobList">
-        <Jobs jobData={jobData} getUserJobs={getUserJobs}></Jobs>
-      </div>
+      {loading ? (
+        <div className="lds-dual-ring loader"></div>
+      ) : (
+        <div className="JobList">
+          <Jobs jobData={jobData} getUserJobs={getUserJobs}></Jobs>
+        </div>
+      )}
     </>
   );
 }

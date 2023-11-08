@@ -130,7 +130,6 @@ $link_primary: #00a0dc;
         justify-content: center;
         align-items: flex-start;
         width: 90%;
-
         label {
           margin-bottom: 1rem;
         }
@@ -143,6 +142,9 @@ $link_primary: #00a0dc;
           margin-bottom: 1rem;
           border-radius: 0.35rem;
           color: $text_color;
+        }
+        input:focus {
+          outline: none;
         }
       }
       .SubmitButton {
@@ -203,6 +205,9 @@ $link_primary: #00a0dc;
           margin-bottom: 1rem;
           border-radius: 0.35rem;
           color: $text_color_alt;
+        }
+        input:focus {
+          outline: none;
         }
       }
       .SubmitButton {

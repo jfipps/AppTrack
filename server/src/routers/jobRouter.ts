@@ -39,6 +39,26 @@ router.get(
   }
 );
 
+// job filter get request
+router.get(
+  "/user/jobs/:Status",
+  sessionCheck,
+  async (req: Request, res: Response) => {
+    let query = req.params.Status;
+    console.log(query);
+    try {
+      const data = await Jobs.find({
+        email: { $eq: req.session.user?.email },
+        jobStatus: { $eq: query },
+      });
+      console.log("Filtered Jobs");
+      res.status(200).send(data);
+    } catch (err) {
+      res.status(401).send(err);
+    }
+  }
+);
+
 // add job linked to currently logged in user's account
 router.post("/CreateJob", sessionCheck, async (req: Request, res: Response) => {
   req.body.email = req.session.user?.email;
@@ -95,3 +115,23 @@ router.post("/EditJob", sessionCheck, async (req: Request, res: Response) => {
     res.status(401).send(e);
   }
 });
+
+// search jobs by title
+router.post(
+  "/SearchJobs",
+  sessionCheck,
+  async (req: Request, res: Response) => {
+    const search = req.body.searchQuery.toLowerCase();
+    console.log(search);
+    try {
+      const foundJobs = await Jobs.find({
+        email: { $eq: req.session.user?.email },
+        jobTitle: { $regex: ".*" + search + ".*", $options: "i" },
+      });
+      console.log("Jobs found");
+      res.status(200).send(foundJobs);
+    } catch (err) {
+      res.status(401).send(err);
+    }
+  }
+);
