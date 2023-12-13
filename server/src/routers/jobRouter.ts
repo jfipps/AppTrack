@@ -135,3 +135,15 @@ router.post(
     }
   }
 );
+
+// delete job
+router.post("/DeleteJob", sessionCheck, async (req: Request, res: Response) => {
+  try {
+    const result = await Jobs.findOneAndDelete({
+      _id: req.body.jobID,
+    });
+    res.status(200).send({ message: "Job Deleted" });
+  } catch (err) {
+    res.status(401).send(err);
+  }
+});

@@ -118,3 +118,15 @@ exports.router.post("/SearchJobs", sessionCheck, async (req, res) => {
         res.status(401).send(err);
     }
 });
+// delete job
+exports.router.post("/DeleteJob", sessionCheck, async (req, res) => {
+    try {
+        const result = await jobs_1.Jobs.findOneAndDelete({
+            _id: req.body.jobID,
+        });
+        res.status(200).send({ message: "Job Deleted" });
+    }
+    catch (err) {
+        res.status(401).send(err);
+    }
+});

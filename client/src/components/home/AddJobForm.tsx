@@ -8,7 +8,7 @@ import {
   updateJobStatus,
   updateCompanyName,
 } from "../../store/slices/addjob";
-import { closeAddJob } from "../../store/slices/toggles";
+import { closeAddJob, updateAddedJobFlag } from "../../store/slices/toggles";
 
 interface Props {
   getUserJobs: () => void;
@@ -70,6 +70,7 @@ export default function AddJobForm({ getUserJobs }: Props) {
       dispatch(updateJobTitle(""));
       dispatch(updateJobDesc(""));
       dispatch(updateCompanyName(""));
+      dispatch(updateAddedJobFlag(true));
       dispatch(closeAddJob());
     } catch (e) {
       console.log(e);

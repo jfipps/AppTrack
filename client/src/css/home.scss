@@ -13,6 +13,8 @@ $assessment: #057cf3;
 $offer: #001aff;
 $rejected: #fa0000;
 $search_button: #718096;
+$delete_button: #c70000;
+$delete_button_hover: #9e0202;
 
 /* reset */
 * {
@@ -488,17 +490,30 @@ $search_button: #718096;
 .JobList {
   height: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 2rem;
+  margin-top: 2rem;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
+/* width */
 .JobList::-webkit-scrollbar {
-  display: none;
+  width: 2px;
+}
+
+/* Track */
+.JobList::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+.JobList::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.JobList::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 // job card
@@ -509,20 +524,28 @@ $search_button: #718096;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: auto;
+  max-height: 25%;
+  height: 20%;
   border-radius: 0.5rem;
   padding: 1rem;
   margin-bottom: 2rem;
-}
-
-.Job-UI-Dark {
-  background-color: $modal_background_primary;
   .JobInfo {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     width: 50%;
+    height: 100%;
+  }
+}
+
+.Job:last-child {
+  margin-bottom: 0rem;
+}
+
+.Job-UI-Dark {
+  background-color: $modal_background_primary;
+  .JobInfo {
     #date {
       font-size: 1.5rem;
       padding-bottom: 0.5rem;
@@ -850,8 +873,9 @@ $search_button: #718096;
       height: auto;
       margin-top: 1.5rem;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: flex-end;
+      justify-content: space-between;
       button {
         padding: 0.75rem 2.5rem 0.75rem 2.5rem;
         background-color: $link_primary;
@@ -862,6 +886,12 @@ $search_button: #718096;
       button:hover {
         cursor: pointer;
         background-color: $link_hover;
+      }
+      #delete {
+        background-color: $delete_button;
+      }
+      #delete:hover {
+        background-color: $delete_button_hover;
       }
     }
   }

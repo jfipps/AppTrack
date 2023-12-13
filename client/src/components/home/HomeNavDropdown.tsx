@@ -27,13 +27,13 @@ export default function HomeNavDropdown() {
 
   return (
     <ul className={darkModeEnabled ? "DropdownDark" : "DropdownLight"}>
-      <li className="DropdownItem">
+      <li className="DropdownItem" onClick={() => navigate("/profile")}>
         <BsFillPersonFill
           size={21}
           color={darkModeEnabled ? "white" : "black"}
           className="DropdownIcon"
         ></BsFillPersonFill>
-        My Profile
+        Reset Password
       </li>
       <li className="DropdownItem" onClick={() => handleLogout()}>
         <BiPowerOff

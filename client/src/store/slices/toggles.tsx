@@ -9,6 +9,9 @@ const togglesSlice = createSlice({
     jobDropdownIndex: -1,
     addJobOpen: false,
     editJobOpen: false,
+    jobAddedFlag: false,
+    jobEditedFlag: false,
+    jobDeletedFlag: false,
   },
   reducers: {
     enableLoading: (state) => {
@@ -44,6 +47,15 @@ const togglesSlice = createSlice({
     closeEditJob: (state) => {
       state.editJobOpen = false;
     },
+    updateEditJobFlag: (state, action: PayloadAction<boolean>) => {
+      state.jobEditedFlag = action.payload;
+    },
+    updateAddedJobFlag: (state, action: PayloadAction<boolean>) => {
+      state.jobAddedFlag = action.payload;
+    },
+    updateDeletedJobFlag: (state, action: PayloadAction<boolean>) => {
+      state.jobDeletedFlag = action.payload;
+    },
   },
 });
 
@@ -59,6 +71,9 @@ export const {
   closeAddJob,
   openEditJob,
   closeEditJob,
+  updateEditJobFlag,
+  updateAddedJobFlag,
+  updateDeletedJobFlag,
 } = togglesSlice.actions;
 
 export default togglesSlice.reducer;

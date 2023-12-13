@@ -9,7 +9,11 @@ import {
   updateCompanyName,
   updateJobID,
 } from "../../store/slices/editjob";
-import { closeEditJob } from "../../store/slices/toggles";
+import {
+  closeEditJob,
+  updateEditJobFlag,
+  updateDeletedJobFlag,
+} from "../../store/slices/toggles";
 
 interface Props {
   getUserJobs: () => void;
@@ -57,6 +61,36 @@ export default function EditJobForm({ getUserJobs }: Props) {
       }).then((res) => {
         res.json().then((data) => {
           console.log(data);
+          dispatch(updateEditJobFlag(true));
+          getUserJobs();
+        });
+      });
+      dispatch(updateJobLink(""));
+      dispatch(updateJobStatus(""));
+      dispatch(updateJobTitle(""));
+      dispatch(updateJobDesc(""));
+      dispatch(updateCompanyName(""));
+      dispatch(closeEditJob());
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleDelete = () => {
+    try {
+      const body = {
+        jobID: jobID,
+      };
+      fetch("http://localhost:5001/DeleteJob", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+        credentials: "include",
+      }).then((res) => {
+        res.json().then((data) => {
+          dispatch(updateDeletedJobFlag(true));
           getUserJobs();
         });
       });
@@ -139,8 +173,16 @@ export default function EditJobForm({ getUserJobs }: Props) {
           </select>
         </div>
         <div className="JobFormSubmit">
-          <button className="FormSubmit">Delete Job</button>
-          <button className="FormSubmit">Edit Job</button>
+          <button
+            id="delete"
+            className="FormSubmit"
+            onClick={() => handleDelete()}
+          >
+            Delete Job
+          </button>
+          <button className="FormSubmit" id="edit">
+            Edit Job
+          </button>
         </div>
       </form>
     </>

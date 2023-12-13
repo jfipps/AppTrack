@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../css/login.scss";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   updateEmail,
   updatePassword,
@@ -14,8 +16,25 @@ export default function LoginForm() {
 
   const email = useAppSelector((state) => state.login.email);
   const password = useAppSelector((state) => state.login.password);
+  const loggedIn = useAppSelector((state) => state.login.loggedIn);
+  const darkModeEnabled = useAppSelector(
+    (state) => state.toggles.darkModeEnabled
+  );
 
   const navigate = useNavigate();
+
+  const toastCall = () => {
+    toast.error("Login Failed. Please try again.", {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
 
   const handleLoginSubmit = async (event: React.FormEvent) => {
     let user: { user: { firstName: string; lastName: string; email: string } };
@@ -31,8 +50,8 @@ export default function LoginForm() {
         body: JSON.stringify(body),
       });
       user = await res.json();
-      console.log(typeof user);
     } else {
+      toastCall();
       return;
     }
     if (user) {
@@ -48,21 +67,28 @@ export default function LoginForm() {
             console.log("Not Found");
           }
           res.json().then((data) => {
+            console.log(data);
             dispatch(setUserLoggedIn(data.loggedIn));
-            dispatch(
-              setUserSession({
-                firstName: user.user.firstName,
-                lastName: user.user.lastName,
-                email: user.user.email,
-              })
-            );
+            if (data.loggedIn) {
+              dispatch(
+                setUserSession({
+                  firstName: user.user.firstName,
+                  lastName: user.user.lastName,
+                  email: user.user.email,
+                })
+              );
+            }
           });
         });
       } catch (e) {
         console.log(e);
         return;
       }
-      navigate("/home");
+      if (loggedIn) {
+        navigate("/home");
+      } else {
+        toastCall();
+      }
     } else {
       console.log("Invalid Login");
     }
@@ -101,6 +127,18 @@ export default function LoginForm() {
           <a onClick={() => navigate("/signup")}>here</a>
         </span>
       </form>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </>
   );
 }
