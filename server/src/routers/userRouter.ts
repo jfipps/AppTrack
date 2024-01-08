@@ -97,3 +97,26 @@ router.delete("/deleteAll", async (req: Request, res: Response) => {
     res.status(400).send(err);
   }
 });
+
+// route to change password
+router.post(
+  "/resetpassword",
+  sessionCheck,
+  async (req: Request, res: Response) => {
+    try {
+      const user = await User.findByCredentials(
+        req.session.user!.email,
+        req.body.oldPassword
+      );
+
+      if (user) {
+        user.password = req.body.newPassword;
+        user.save();
+      }
+
+      res.status(200).send({ user: req.session.user! });
+    } catch (err) {
+      res.status(400).send({ err: "User not found" });
+    }
+  }
+);

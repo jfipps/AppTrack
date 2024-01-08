@@ -16,7 +16,7 @@ interface iJobs {
   applicationStatus: String;
   email: String;
   jobDesc: String;
-  jobLink: String;
+  jobLink: string;
   jobTitle: String;
   jobStatus: String;
   companyName: String;

@@ -10,7 +10,7 @@ interface iJobs {
   applicationStatus: String;
   email: String;
   jobDesc: String;
-  jobLink: String;
+  jobLink: string;
   jobTitle: String;
   jobStatus: String;
   companyName: String;
@@ -49,7 +49,9 @@ export default function HomeContent({
       <div className="SidebarFilters">
         <div
           className={
-            darkModeEnabled ? "Filter Filter-UI-Dark" : "Filter Filter-UI-Light"
+            darkModeEnabled
+              ? "Filter Filter-UI-Dark Search"
+              : "Filter Filter-UI-Light"
           }
         >
           <SearchFilter
@@ -59,7 +61,9 @@ export default function HomeContent({
         </div>
         <div
           className={
-            darkModeEnabled ? "Filter Filter-UI-Dark" : "Filter Filter-UI-Light"
+            darkModeEnabled
+              ? "Filter Filter-UI-Dark Status"
+              : "Filter Filter-UI-Light"
           }
         >
           <StatusFilter

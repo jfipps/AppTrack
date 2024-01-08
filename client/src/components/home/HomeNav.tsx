@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { BsLightbulbFill } from "react-icons/bs";
 import HomeNavDropdown from "./HomeNavDropdown";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
@@ -54,9 +54,11 @@ export default function HomeNav() {
           }
         >
           <div className="NavContainer">
-            <span className="NavLogo">APP TRACK</span>
+            <span className="NavLogo" onClick={() => navigate("/home")}>
+              APP TRACK
+            </span>
             <div className="HomeNavButtons">
-              <button onClick={handleDarkModeClick}>
+              <button className="DarkModeButton" onClick={handleDarkModeClick}>
                 {darkModeEnabled ? (
                   <BsLightbulbFill color="white"></BsLightbulbFill>
                 ) : (
@@ -68,9 +70,9 @@ export default function HomeNav() {
                   {user.firstName} {user.lastName}{" "}
                   <AiOutlineDown></AiOutlineDown>
                 </button>
-                {userDropdownOpen && <HomeNavDropdown></HomeNavDropdown>}
               </div>
             </div>
+            {userDropdownOpen && <HomeNavDropdown></HomeNavDropdown>}
           </div>
         </div>
       </>

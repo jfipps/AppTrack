@@ -23,8 +23,8 @@ export default function LoginForm() {
 
   const navigate = useNavigate();
 
-  const toastCall = () => {
-    toast.error("Login Failed. Please try again.", {
+  const toastCall = (message: String) => {
+    toast.error(message, {
       position: "bottom-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -51,9 +51,10 @@ export default function LoginForm() {
       });
       user = await res.json();
     } else {
-      toastCall();
+      toastCall("Please enter in a username and password.");
       return;
     }
+    console.log("User", user);
     if (user) {
       try {
         await fetch("http://localhost:5001/isAuth", {
@@ -77,6 +78,7 @@ export default function LoginForm() {
                   email: user.user.email,
                 })
               );
+              navigate("/home");
             }
           });
         });
@@ -84,10 +86,11 @@ export default function LoginForm() {
         console.log(e);
         return;
       }
+      console.log("LoggedIn", loggedIn);
       if (loggedIn) {
         navigate("/home");
       } else {
-        toastCall();
+        toastCall("Login failed. Please try again.");
       }
     } else {
       console.log("Invalid Login");

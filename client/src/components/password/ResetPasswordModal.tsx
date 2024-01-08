@@ -7,7 +7,7 @@ import ResetPasswordForm from "./ResetPasswordForm";
 import "react-toastify/dist/ReactToastify.css";
 import "../../css/resetpassword.scss";
 
-function ResetPassword() {
+function ResetPasswordModal() {
   const darkModeEnabled = useAppSelector(
     (state) => state.toggles.darkModeEnabled
   );
@@ -21,10 +21,13 @@ function ResetPassword() {
             : "ResetPasswordMain ResetPassword-UI-Light"
         }
       >
-        <ResetPasswordForm />
+        <div className="ResetPasswordModal">
+          <span className="ResetPasswordHeader">Reset Password</span>
+          <ResetPasswordForm />
+        </div>
       </div>
     </>
   );
 }
 
-export default ResetPassword;
+export default ResetPasswordModal;

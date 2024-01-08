@@ -55,11 +55,11 @@ const userSchema = new mongoose_1.default.Schema({
 userSchema.statics.findByCredentials = async (email, password) => {
     const user = await exports.User.findOne({ email: email });
     if (!user) {
-        throw new Error("Unable to login");
+        throw new Error("User not found");
     }
     const isMatch = await bs.compare(password, user.password);
     if (!isMatch) {
-        throw new Error("Unable to login");
+        throw new Error("Incorrect Info");
     }
     return user;
 };

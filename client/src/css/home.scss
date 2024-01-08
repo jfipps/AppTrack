@@ -38,16 +38,18 @@ $delete_button_hover: #9e0202;
     width: 80%;
     align-items: center;
     justify-content: space-between;
+    .NavLogo:hover {
+      cursor: pointer;
+    }
     .HomeNavButtons {
       display: flex;
       flex-direction: row;
-      width: 10%;
       justify-content: space-around;
+      width: 10%;
       .DropdownButton {
         display: flex;
         flex-direction: column;
-        position: absolute;
-        margin-left: 10rem;
+        justify-content: right;
         button {
           display: flex;
           flex-direction: row;
@@ -59,11 +61,12 @@ $delete_button_hover: #9e0202;
 }
 
 .DropdownDark {
-  list-style: none;
   background-color: $modal_background_primary;
-  margin-top: 1rem;
-  li {
-    padding: 1rem 0 1rem 0;
+  position: absolute;
+  top: 5%;
+  right: 10%;
+  div {
+    padding: 1rem;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -72,31 +75,33 @@ $delete_button_hover: #9e0202;
       margin: 0 0.5rem 0 0.5rem;
     }
   }
-  li:hover {
+  div:hover {
     cursor: pointer;
     background-color: $link_primary;
   }
 }
 
 .DropdownLight {
-  list-style: none;
   background-color: $text_color;
+  border-bottom: 1px solid $modal_background_primary;
+  border-left: 1px solid $modal_background_primary;
+  border-right: 1px solid $modal_background_primary;
   margin-top: 1rem;
-  li:first-child {
-    border-top: 1px solid $modal_background_primary;
-  }
-  li {
-    padding: 1rem 0 1rem 0;
+  position: absolute;
+  top: 3rem;
+  right: 17rem;
+  overflow: visible;
+  div {
+    padding: 1rem;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    border-bottom: 1px solid $modal_background_primary;
     .DropdownIcon {
       margin: 0 0.5rem 0 0.5rem;
     }
   }
-  li:hover {
+  div:hover {
     cursor: pointer;
     background-color: $link_light;
   }
@@ -126,7 +131,7 @@ $delete_button_hover: #9e0202;
 
 .Nav-UI-Light {
   background-color: $background_light;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid $modal_background_primary;
   color: $text_color_alt;
   span {
     font-family: "Inter", sans-serif;
@@ -190,14 +195,14 @@ $delete_button_hover: #9e0202;
 .SidebarFilters {
   display: flex;
   flex-direction: column;
-  height: 80%;
+  height: 100%;
   width: 30%;
+  margin-top: 13rem;
   align-items: center;
 }
 
 .Filter {
   width: 90%;
-  height: auto;
   padding: 2rem 0 2rem 0;
   margin-top: 2rem;
   border-radius: 0.5rem;
@@ -417,9 +422,18 @@ $delete_button_hover: #9e0202;
   }
 }
 
+.Search {
+  height: 10%;
+}
+
+.Status {
+  height: auto;
+}
+
 .JobContainer {
   width: 70%;
-  height: 80%;
+  height: 100%;
+  margin-top: 13rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -429,6 +443,7 @@ $delete_button_hover: #9e0202;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: 10%;
   padding: 2rem 1rem 2rem 1rem;
@@ -440,7 +455,7 @@ $delete_button_hover: #9e0202;
   background-color: $modal_background_primary;
   .SortingOptions {
     width: 30%;
-    height: 125%;
+    height: auto;
     padding: 0.5rem;
     border-radius: 0.5rem;
     background-color: $modal_background_primary;
@@ -448,7 +463,7 @@ $delete_button_hover: #9e0202;
   }
   .AddJobButton {
     width: 15%;
-    height: 125%;
+    height: auto;
     border: 0.5rem;
     padding: 0.5rem;
     color: $text_color;
@@ -466,7 +481,7 @@ $delete_button_hover: #9e0202;
   border: 1px solid $modal_border_light;
   .SortingOptions {
     width: 30%;
-    height: 125%;
+    height: auto;
     padding: 0.5rem;
     border-radius: 0.5rem;
     background-color: $text_color;
@@ -474,7 +489,7 @@ $delete_button_hover: #9e0202;
   }
   .AddJobButton {
     width: 15%;
-    height: 125%;
+    height: auto;
     border: 0.5rem;
     padding: 0.5rem;
     color: $text_color;
@@ -488,7 +503,7 @@ $delete_button_hover: #9e0202;
 }
 
 .JobList {
-  height: 100%;
+  height: 70%;
   width: 100%;
   margin-top: 2rem;
   overflow-y: scroll;
@@ -524,8 +539,8 @@ $delete_button_hover: #9e0202;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-height: 25%;
-  height: 20%;
+  max-height: 35%;
+  height: 25%;
   border-radius: 0.5rem;
   padding: 1rem;
   margin-bottom: 2rem;

@@ -1,6 +1,6 @@
 import { NextFunction } from "connect";
 
-import mongoose from "mongoose";
+import mongoose, { set } from "mongoose";
 const bs = require("bcryptjs");
 const validator = require("validator");
 const jwt = require("jsonwebtoken");
@@ -88,13 +88,13 @@ userSchema.statics.findByCredentials = async (
   const user = await User.findOne({ email: email });
 
   if (!user) {
-    throw new Error("Unable to login");
+    throw new Error("User not found");
   }
 
   const isMatch = await bs.compare(password, user.password);
 
   if (!isMatch) {
-    throw new Error("Unable to login");
+    throw new Error("Incorrect Info");
   }
 
   return user;

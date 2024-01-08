@@ -16,7 +16,7 @@ interface iJobs {
   applicationStatus: String;
   email: String;
   jobDesc: String;
-  jobLink: String;
+  jobLink: string;
   jobTitle: String;
   jobStatus: String;
   companyName: String;
@@ -66,7 +66,9 @@ export default function Jobs({ jobData, getUserJobs }: Props) {
               <span id="company">{job.companyName}</span>
               <span id="title">{job.jobTitle}</span>
               <span id="desc">{job.jobDesc}</span>
-              <a id="link">{job.jobLink}</a>
+              <a id="link" href={job.jobLink} target="_blank">
+                {job.jobLink}
+              </a>
             </div>
             <div className="JobStatus">
               <div className="StatusContainer">

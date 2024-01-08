@@ -5,7 +5,7 @@ import { enableLoading, disableLoading } from "../store/slices/toggles";
 import "../css/home.scss";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useNavigate, Navigate } from "react-router-dom";
-import ResetPassword from "../components/password/ResetPassword";
+import ResetPasswordModal from "../components/password/ResetPasswordModal";
 
 function ResetPasswordPage() {
   const dispatch = useAppDispatch();
@@ -55,7 +55,7 @@ function ResetPasswordPage() {
     return (
       <>
         <HomeNav></HomeNav>
-        <ResetPassword></ResetPassword>
+        <ResetPasswordModal></ResetPasswordModal>
       </>
     );
   } else {
