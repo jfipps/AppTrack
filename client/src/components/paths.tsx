@@ -4,6 +4,7 @@ import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
 import HomePage from "../pages/HomePage";
 import ResetPasswordPage from "../pages/ResetPasswordPage";
+import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 
 export default function Paths() {
   return (
@@ -13,8 +14,12 @@ export default function Paths() {
         <Route path="/signup" element={<SignUpPage></SignUpPage>}></Route>
         <Route path="/home" element={<HomePage></HomePage>}></Route>
         <Route
-          path="/profile"
+          path="/resetpassword"
           element={<ResetPasswordPage></ResetPasswordPage>}
+        ></Route>
+        <Route
+          path="/forgotpassword"
+          element={<ForgotPasswordPage></ForgotPasswordPage>}
         ></Route>
       </Routes>
     </>

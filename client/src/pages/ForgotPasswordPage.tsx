@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import HomeNav from "../components/home/HomeNav";
-import HomeMain from "../components/home/HomeMain";
 import { setUserLoggedIn, setUserSession } from "../store/slices/login";
 import { enableLoading, disableLoading } from "../store/slices/toggles";
 import "../css/home.scss";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useNavigate, Navigate } from "react-router-dom";
+import LoginNav from "../components/login/LoginNav";
+import EmailPasswordModal from "../components/password/EmailPasswordModal";
 
-export default function HomePage() {
+function ForgotPasswordPage() {
   const dispatch = useAppDispatch();
 
   const isLoading = useAppSelector((state) => state.toggles.isLoading);
@@ -58,14 +59,16 @@ export default function HomePage() {
     return <div>Loading...</div>;
   }
   if (userLoggedIn) {
+    console.log("Please use the reset password page");
+    return <Navigate replace to="/home" />;
+  } else {
     return (
       <>
-        <HomeNav></HomeNav>
-        <HomeMain></HomeMain>
+        <LoginNav />
+        <EmailPasswordModal />
       </>
     );
-  } else {
-    console.log("User session is not available");
-    return <Navigate replace to="/" />;
   }
 }
+
+export default ForgotPasswordPage;

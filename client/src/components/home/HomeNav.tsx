@@ -13,6 +13,8 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { useNavigate, Navigate } from "react-router-dom";
 
 export default function HomeNav() {
+  const userProfileButtonRef = useRef<HTMLButtonElement>(null);
+
   const darkModeEnabled = useAppSelector(
     (state) => state.toggles.darkModeEnabled
   );
@@ -66,13 +68,20 @@ export default function HomeNav() {
                 )}
               </button>
               <div className="DropdownButton">
-                <button onClick={handleUserProfileClick}>
+                <button
+                  onClick={handleUserProfileClick}
+                  ref={userProfileButtonRef}
+                >
                   {user.firstName} {user.lastName}{" "}
                   <AiOutlineDown></AiOutlineDown>
                 </button>
               </div>
             </div>
-            {userDropdownOpen && <HomeNavDropdown></HomeNavDropdown>}
+            {userDropdownOpen && (
+              <HomeNavDropdown
+                userProfileRef={userProfileButtonRef.current}
+              ></HomeNavDropdown>
+            )}
           </div>
         </div>
       </>

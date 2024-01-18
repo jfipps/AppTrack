@@ -5,10 +5,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
 const { sessionCheck } = require("../middleware/auth");
+const nodemailer = require("nodemailer");
+const generator = require("generate-password");
 const express_1 = __importDefault(require("express"));
 const user_1 = require("../models/user");
 require("../db/mongoose");
 exports.router = express_1.default.Router();
+const transporter = nodemailer.createTransport({
+    host: "smtp-mail.outlook.com",
+    secureConnection: false,
+    port: 587,
+    auth: {
+        user: "apptrack123@outlook.com",
+        pass: "Graphite1234$",
+    },
+    tls: {
+        ciphers: "SSLv3",
+    },
+});
 // get all users
 exports.router.get("/getUsers", async (req, res) => {
     try {
@@ -18,6 +32,17 @@ exports.router.get("/getUsers", async (req, res) => {
     }
     catch (err) {
         console.log(err);
+    }
+});
+// find user
+exports.router.post("/finduser", async (req, res) => {
+    try {
+        const email = req.body.email;
+        const user = await user_1.User.findOne({ email: email });
+        res.status(200).send({ user: user });
+    }
+    catch (e) {
+        res.status(404).send({ err: e });
     }
 });
 // route to create a user if criteria met
@@ -60,6 +85,7 @@ exports.router.get("/users", sessionCheck, async (req, res) => {
 exports.router.get("/user/logout", sessionCheck, async (req, res) => {
     try {
         delete req.session.user;
+        console.log(req.session);
         res.status(200).send(req.session);
     }
     catch (err) {
@@ -100,5 +126,33 @@ exports.router.post("/resetpassword", sessionCheck, async (req, res) => {
     }
     catch (err) {
         res.status(400).send({ err: "User not found" });
+    }
+});
+// route to send password reset email
+exports.router.post("/sendemail", async (req, res) => {
+    try {
+        const user = await user_1.User.findOne({
+            email: req.body.email,
+        });
+        var password = generator.generate({
+            length: 14,
+            numbers: true,
+            symbols: true,
+        });
+        if (user) {
+            user.password = password;
+            user.save();
+        }
+        const info = await transporter.sendMail({
+            from: '"App Track" <apptrack123@outlook.com>',
+            to: "jfipps1995@gmail.com",
+            subject: "Your password has been reset.",
+            text: `Your temporary password is: ${password}`,
+        });
+        res.status(200).send("Message Sent");
+    }
+    catch (e) {
+        console.log(e);
+        res.status(400).send({ err: "Message not sent" });
     }
 });

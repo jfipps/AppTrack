@@ -15,7 +15,6 @@ export default function EditJob({ getUserJobs }: Props) {
   const dispatch = useAppDispatch();
 
   let clickHandler = (event: MouseEvent) => {
-    //var element = event.target as HTMLElement;
     if (
       sidebarRef.current &&
       !sidebarRef.current.contains(event.target as Node)

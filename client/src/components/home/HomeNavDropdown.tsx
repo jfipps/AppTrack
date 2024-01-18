@@ -5,8 +5,13 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { closeDropdown } from "../../store/slices/toggles";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { setUserLoggedIn } from "../../store/slices/login";
 
-export default function HomeNavDropdown() {
+interface Props {
+  userProfileRef: HTMLButtonElement | null;
+}
+
+export default function HomeNavDropdown({ userProfileRef }: Props) {
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
@@ -16,7 +21,8 @@ export default function HomeNavDropdown() {
   let clickHandler = (event: MouseEvent) => {
     if (
       dropdownRef.current &&
-      !dropdownRef.current.contains(event.target as Node)
+      !dropdownRef.current.contains(event.target as Node) &&
+      event.target !== userProfileRef
     ) {
       dispatch(closeDropdown());
     }
@@ -45,6 +51,7 @@ export default function HomeNavDropdown() {
     }).then((res) => {
       console.log(res.json());
     });
+    dispatch(setUserLoggedIn(false));
     navigate("/");
   };
 
@@ -53,7 +60,7 @@ export default function HomeNavDropdown() {
       className={darkModeEnabled ? "DropdownDark" : "DropdownLight"}
       ref={dropdownRef}
     >
-      <div className="DropdownItem" onClick={() => navigate("/profile")}>
+      <div className="DropdownItem" onClick={() => navigate("/resetpassword")}>
         <BsFillPersonFill
           size={21}
           color={darkModeEnabled ? "white" : "black"}

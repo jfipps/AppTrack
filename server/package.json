@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon dist/server.js",
+    "start": "node dist/server.js",
     "dev": "env-cmd -f ./src/config/dev.env nodemon ./dist/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-client": "cd ../client && npm install",
+    "build": "cd ../client && npm run build",
+    "heroku-postbuild": "cd ../client && npm install --only=dev && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -21,10 +24,13 @@
     "cors": "^2.8.5",
     "env-cmd": "^10.1.0",
     "express": "^4.18.2",
+    "express-mailer": "^0.3.1",
     "express-session": "^1.17.3",
+    "generate-password": "^1.7.1",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.0.0",
     "mongoose": "^7.5.0",
+    "nodemailer": "^6.9.8",
     "nodemon": "^3.0.1",
     "path": "^0.12.7",
     "postman-request": "^2.88.1-postman.33",

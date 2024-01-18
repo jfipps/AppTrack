@@ -129,6 +129,10 @@ export default function LoginForm() {
           Don't have an account? Register{" "}
           <a onClick={() => navigate("/signup")}>here</a>
         </span>
+        <span id="forgot-password">
+          Forgot Password? Reset{" "}
+          <a onClick={() => navigate("/forgotpassword")}>here</a>
+        </span>
       </form>
       <ToastContainer
         position="bottom-center"
