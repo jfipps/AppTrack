@@ -16,8 +16,8 @@ const transporter = nodemailer.createTransport({
     secureConnection: false,
     port: 587,
     auth: {
-        user: "apptrack123@outlook.com",
-        pass: "Graphite1234$",
+        user: process.env.NODEMAILERUSERNAME,
+        pass: process.env.NODEMAILERPASSWORD,
     },
     tls: {
         ciphers: "SSLv3",
